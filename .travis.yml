@@ -21,6 +21,7 @@ jobs:
         bucket: uiza-development-playerjs-dev-uizadev-io-origin
         region: ap-southeast-1
         local_dir: dist
+        glob: "hls.min.js"
         on:
           branch: build/*
 
