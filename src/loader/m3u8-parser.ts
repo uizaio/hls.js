@@ -16,7 +16,7 @@ import { PlaylistLevelType } from '../types/loader';
  */
 
 // https://regex101.com is your friend
-const MASTER_PLAYLIST_REGEX = /(?:#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)|#EXT-X-SESSION-DATA:([^\n\r]*)[\r\n]+)/g;
+const MASTER_PLAYLIST_REGEX = /(?:#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)|#EXT-X-SESSION-DATA:([^\n\r]*)[\r\n]+)|#EXT-X-UZ-TIMESHIFT:(.+)/g;
 const MASTER_PLAYLIST_MEDIA_REGEX = /#EXT-X-MEDIA:(.*)/g;
 
 const LEVEL_PLAYLIST_REGEX_FAST = new RegExp([
@@ -61,6 +61,7 @@ export default class M3U8Parser {
   static parseMasterPlaylist (string: string, baseurl: string) {
     // TODO(typescript-level)
     let levels: Array<any> = [];
+    let timeshift: string = '';
     let sessionData: Record<string, AttrList> = {};
     let hasSessionData = false;
     MASTER_PLAYLIST_REGEX.lastIndex = 0;
@@ -116,10 +117,14 @@ export default class M3U8Parser {
           hasSessionData = true;
           sessionData[sessionAttrs['DATA-ID']] = sessionAttrs;
         }
+      } else if (result[4]) {
+        // '#EXT-X-UZ-TIMESHIFT' is found, parse session data in group 3
+        timeshift = result[4].split(' ')[1];
       }
     }
     return {
       levels,
+      timeshift,
       sessionData: hasSessionData ? sessionData : null
     };
   }

@@ -1,9 +1,12 @@
 {
-  "name": "hls.js",
+  "name": "@uizaio/hls.js",
   "license": "Apache-2.0",
   "description": "JavaScript HLS client using MediaSourceExtension",
   "homepage": "https://github.com/video-dev/hls.js",
-  "authors": "Guillaume du Pontavice <g.du.pontavice@gmail.com>",
+  "authors": [
+    "Guillaume du Pontavice <g.du.pontavice@gmail.com>",
+    "Au Duong Jeff Le <duongldn@uiza.io>"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/video-dev/hls.js"
@@ -15,6 +18,15 @@
   "files": [
     "dist/**/*",
     "src/**/*"
+  ],
+  "keywords": [
+    "HTML5 Video",
+    "HTML5 Audio",
+    "Media Player",
+    "HLS",
+    "HLS.js",
+    "Uiza",
+    "Uiza Player"
   ],
   "publishConfig": {
     "access": "public"
