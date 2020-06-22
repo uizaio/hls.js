@@ -1,7 +1,6 @@
 sudo: false
 language: node_js
 node_js:
-- '8'
 - '10'
 - '12'
 - '14'
@@ -11,7 +10,6 @@ cache:
 before_install: if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
 script: 
   - npm run lint
-  - npm run test
   - npm run build
 
 jobs:
