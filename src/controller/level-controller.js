@@ -147,7 +147,9 @@ export default class LevelController extends EventHandler {
       // Audio is only alternate if manifest include a URI along with the audio group tag,
       // and this is not an audio-only stream where levels contain audio-only
       const audioOnly = audioCodecFound && !videoCodecFound;
+      const timeshift = data.timeshift || '';
       this.hls.trigger(Event.MANIFEST_PARSED, {
+        timeshift,
         levels,
         audioTracks,
         firstLevel: this._firstLevel,
