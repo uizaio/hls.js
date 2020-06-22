@@ -119,7 +119,7 @@ export default class M3U8Parser {
         }
       } else if (result[4]) {
         // '#EXT-X-UZ-TIMESHIFT' is found, parse session data in group 3
-        timeshift = result[4].split(' ')[1];
+        timeshift = result[4];
       }
     }
     return {
