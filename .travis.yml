@@ -8,24 +8,22 @@ cache:
   directories:
   - node_modules
 before_install: if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
-script: 
-  - npm run lint
-  - npm run build
-
+script:
+- npm run build
 jobs:
   include:
-    - stage: npm release
-      node_js: "12"
-      script: npm run build
-      deploy:
-        provider: npm
-        skip_cleanup: true
-        on:
-          branch: release/*
-        email: developer@uiza.io
-        api_key:
-          secure: "GzQC6e6yjZLsSwNq7J/Z9Pr6Kq8gsoSylUT7G9u8Lh1I1QF3Cx5Mjj9/5CM/uYn97Qu1m+G4PcYJZEklh3MF2XMhUS9Ok0BmwleHkWksXkdX/x1e2WpZZwkf/RuhhqcTMcavQBNSD10s5/MG9LflE6SBsmg8O/IQmsSWrHbUGSKOluXaJBeMhzSyUQFUoeSnKSIj/JvYM5ywRD6locxDLQ8GwXfX/rdv8VcXLquOecuDsd6C42WLWApcX0+rCStwiOO0Gd4aIF1f65I7MAq8C0yaeohP21qaa/RVJGjy5FyM3t5yE/c1ulrZDo2DRzleNZS9B/MORbwYhrutYrdQc6dZDTCKjnRWLPW8fzbSNZB5CsitpWWlExI8XoSQ6EZmbUjpAW8u7CoF7vRFYXv3lfdK9tl8RcST7iUm4gTtmiytniIhQvpVp6WYfEQG92uU5oFJ8klewYc3StVAIpdnSaXQknL+/KFog5tCXVTK//atSEI7khXMYJkcnDchCGZGAnmuVllUNAOmLkWIsS+4E1Wzhgkn5ty8bTMeWp7ws8e5hLJojxPU0NJ1s3vpYlDuFc2evkj30z6pnPPqD3KDRVIaNPbU4tDHQFK1njmMmHXK/74Yp19Dd+Rl6+SK3U4ufh9+UbhS9U9dKyOCmEIP6ye1rVOUvidx3yxvynOCZiY="
-
+  - stage: npm release
+    node_js: '12'
+    script: npm run build
+    deploy:
+      provider: npm
+      skip_cleanup: true
+      on:
+        branch: release/*
+      email: developer@uiza.io
+      api_key:
+        secure: GzQC6e6yjZLsSwNq7J/Z9Pr6Kq8gsoSylUT7G9u8Lh1I1QF3Cx5Mjj9/5CM/uYn97Qu1m+G4PcYJZEklh3MF2XMhUS9Ok0BmwleHkWksXkdX/x1e2WpZZwkf/RuhhqcTMcavQBNSD10s5/MG9LflE6SBsmg8O/IQmsSWrHbUGSKOluXaJBeMhzSyUQFUoeSnKSIj/JvYM5ywRD6locxDLQ8GwXfX/rdv8VcXLquOecuDsd6C42WLWApcX0+rCStwiOO0Gd4aIF1f65I7MAq8C0yaeohP21qaa/RVJGjy5FyM3t5yE/c1ulrZDo2DRzleNZS9B/MORbwYhrutYrdQc6dZDTCKjnRWLPW8fzbSNZB5CsitpWWlExI8XoSQ6EZmbUjpAW8u7CoF7vRFYXv3lfdK9tl8RcST7iUm4gTtmiytniIhQvpVp6WYfEQG92uU5oFJ8klewYc3StVAIpdnSaXQknL+/KFog5tCXVTK//atSEI7khXMYJkcnDchCGZGAnmuVllUNAOmLkWIsS+4E1Wzhgkn5ty8bTMeWp7ws8e5hLJojxPU0NJ1s3vpYlDuFc2evkj30z6pnPPqD3KDRVIaNPbU4tDHQFK1njmMmHXK/74Yp19Dd+Rl6+SK3U4ufh9+UbhS9U9dKyOCmEIP6ye1rVOUvidx3yxvynOCZiY=
 notifications:
   slack:
-    secure: SQJkIhHTiX6Ls5u7eajm1PqsOnWQ8dclxsKFY5aUuuxWSHG0/R6tEvyktelAOhBQKZ1p8B4gWs4HjbDRWh5SeogytOyAvrhKJaX0+DG+eJoHOVBD8xzow/p4Gj6u9bMwlWYc+uj8WnJPMqYcx2lciWIL156CEsd/CbnvFQOlA2hdMH+gLd46nb4bBHc2YS6qC6YHqvsSZPiMLaPo8hk/LDZeMC3+g0oChLRyJIaC5bIh17lVAgTccbYy4jBooM3ryckYnVZvhKlAPfgZ8bP/kXia7FMkOi8vhtoi3V8pekif44ii4CfQg3+QEpn9cGSHfBrveIvqOAwribdh4YvqAOfviapbGnJBtsfX3L/rlCYfUirfhEJ6Njz9zKpTo7yafdvndd/47zkKz3cNzpyrodIqG24DIsB700Gphyss9s95rf68dItKME9ZlGxRTBGbI+J33FvEfAnCHhxB8bFnWQYc/GIXd06jhHVSXgugBesNgeZYuKt1k3UP8L7x4DK/Yk+q3ZGHktOmNbESw5LK8D1E/elvhqM4SgitTtVvi+d/9fMUlTdcxRPUGqH87Bt285eWUlWyGlpKECBhcs0Y2XOukkw3pszUBVugAaueppFj/pJJt0a9zYTZHCr8tmJCKYY3wK3uvnpsVLb19vIwUybQ5xbsCpu9y4SVvjRurxA=
+    rooms:
+      secure: Bgz8NlAPizegtSD8++V6w8cMXXWDVGHFszxg+gJJRwT+3smvJUP+PQONVozMgoPXWXGrk9HbTALqJ2MYtxB4TJWbeiOugcNDUmIg/GAJGEgGAc5Tbu2XuBO7U28b9zueKpZTAA0FfT2kXGQLF1ohB7ovTtlykE7IT3a6t3IfNXCTug3zE7EgVLpi53XL30IAQotn7rHVhTMk1KOHFuP03gxGL3hpCruvkRPbZyNBh2188gqZBjrXkDD2sOTx+YERdNe8IyeTUOAp52omKpUHAvK5q90pprkWG6V0iu2iY/dCTgvLjc3DnH+0/8tT21yllHsxAxW8Mdk1j8ovaeQQxsa9gbiYZbT3MWB9cLzTTi2Q/k921V2Bhow/NCd/nYwfIyk7j0hEbRrA6bz7YXeXlnF+W3NjAASr/UV1T4vpcXsZkjLVylYC7UlpS/4fdAbUEEeZ90+lNTtL6Kh17WbEzc/HKPT4EsyPwTLnnQ94HXZiziVNjsZirWtpSs2AxHq9ryuqvX6NvrW6dAxOJ6LInub0CbtNHK+Wn88YZICJSMOz/NZWHjoPXNAXd/GIJ1kXUCSjejL5DOl2Vej4A5GU/JpoWZDfTgR+wdujiiduTTxqw1I/rphQTnVXZqdDjXCTxX872Lvf9tkITfJbtmxfKQAUsR0u5mOc34f1DKl8PRs=
